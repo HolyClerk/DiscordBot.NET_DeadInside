@@ -10,7 +10,7 @@ using System.Reflection;
 
 using DiscordBot.BotLogger;
 
-namespace DiscordBot.BotCore;
+namespace DiscordBot.CoreDuo;
 
 internal class Core
 {
@@ -44,6 +44,8 @@ internal class Core
             await _client.LoginAsync(TokenType.Bot, new BotToken().AskToToken());
             await _client.StartAsync();
 
+            await Panel.StartAsync();
+
             await Task.Delay(-1);
         }
         catch (Exception e)
@@ -56,6 +58,7 @@ internal class Core
     private async Task CommandHandleAsync(SocketMessage arg)
     {
         var message = (SocketUserMessage)arg;
+
         var context = new SocketCommandContext(_client, message);
 
         if (message.Author.IsBot)

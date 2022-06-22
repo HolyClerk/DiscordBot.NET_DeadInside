@@ -1,4 +1,4 @@
-﻿using DiscordBot.BotCore;
+﻿using DiscordBot.CoreDuo;
 
 namespace DiscordBot;
 

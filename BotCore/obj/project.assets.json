@@ -3432,11 +3432,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\PHPpr\\Documents\\Dev\\BotCore\\BotCore\\DiscordBot.csproj",
+      "projectUniqueName": "C:\\Users\\PHPpr\\Documents\\Dev\\BotCore\\DiscordBot.NET_DeadInside\\BotCore\\DiscordBot.csproj",
       "projectName": "DiscordBot",
-      "projectPath": "C:\\Users\\PHPpr\\Documents\\Dev\\BotCore\\BotCore\\DiscordBot.csproj",
+      "projectPath": "C:\\Users\\PHPpr\\Documents\\Dev\\BotCore\\DiscordBot.NET_DeadInside\\BotCore\\DiscordBot.csproj",
       "packagesPath": "C:\\Users\\PHPpr\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\PHPpr\\Documents\\Dev\\BotCore\\BotCore\\obj\\",
+      "outputPath": "C:\\Users\\PHPpr\\Documents\\Dev\\BotCore\\DiscordBot.NET_DeadInside\\BotCore\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\PHPpr\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -3517,7 +3517,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "pBc32DX1xjuzReYgszrqwMKl/IDsgI2Uog9uzrKN/dEfhcFMdTWdnJjCVu7oAokfOnZtXfAyO5NBIfOdNnJcMw==",
+  "dgSpecHash": "aChSOqi6bRvfO/N776MNJQt3J2g/ze7MvAU4HJtY98MvZFkVIy5BkxqMHEtfvFh6Rdo4f9pBcUiiCJJ7lgS/xQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\PHPpr\\Documents\\Dev\\BotCore\\BotCore\\DiscordBot.csproj",
+  "projectFilePath": "C:\\Users\\PHPpr\\Documents\\Dev\\BotCore\\DiscordBot.NET_DeadInside\\BotCore\\DiscordBot.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\PHPpr\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\PHPpr\\.nuget\\packages\\discord.addons.hosting\\5.1.0\\discord.addons.hosting.5.1.0.nupkg.sha512",
