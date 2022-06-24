@@ -24,14 +24,13 @@ internal class Core
 
     public Core()
     {
-        // Логгер
         _logger = new BotDebugger();
 
-        // Клиент и его команды
+        // Клиент и его команды.
         _client = new DiscordSocketClient();
         _commands = new CommandService();
 
-        // Объявдение сервисов клиента и комманд как одноименных
+        // Объявдение сервисов клиента и комманд как единственно-реализуемых(синглтон ебливый).
         _services = new ServiceCollection()
             .AddSingleton(_client)
             .AddSingleton(_commands)
@@ -66,6 +65,12 @@ internal class Core
         }
     }
 
+    /// <summary>
+    /// Метод, срабатывающий при отправке пользователем к-либо сообщения.
+    /// Проверяет является ли сообщение командой.
+    /// </summary>
+    /// <param name="arg">Проверяемое сообщение</param>
+    /// <returns>Task</returns>
     private async Task CommandHandleAsync(SocketMessage arg)
     {
         var message = (SocketUserMessage)arg;
