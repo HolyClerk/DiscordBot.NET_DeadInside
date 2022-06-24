@@ -12,14 +12,14 @@ internal class BotDebugger
         return Task.CompletedTask;
     }
 
-    public void WriteLogLine(string message)
+    public static void WriteLogLine(string message)
     {
         Console.ForegroundColor = ConsoleColor.Green;
         Console.WriteLine(message);
         Console.ResetColor();
     }
 
-    public void WriteErrorLine(string reason)
+    public static void WriteErrorLine(string reason)
     {
         Console.WriteLine("\n!!! Бот вызвал ошибку !!!");
         Console.WriteLine(reason);
