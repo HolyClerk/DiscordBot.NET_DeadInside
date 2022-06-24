@@ -8,23 +8,30 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System.Reflection;
 
-using DiscordBot.BotLogger;
+using DiscordBot.Log;
+using DiscordBot.ChannelConnection;
 
 namespace DiscordBot.CoreDuo;
 
 internal class Core
 {
-    private Logger _logger;
+    private BotDebugger _logger;
+
     private DiscordSocketClient _client;
     private CommandService _commands;
+
     private IServiceProvider _services;
 
     public Core()
     {
-        _logger = new Logger();
+        // Логгер
+        _logger = new BotDebugger();
+
+        // Клиент и его команды
         _client = new DiscordSocketClient();
         _commands = new CommandService();
 
+        // Объявдение сервисов клиента и комманд как одноименных
         _services = new ServiceCollection()
             .AddSingleton(_client)
             .AddSingleton(_commands)
@@ -32,7 +39,11 @@ internal class Core
 
         _client.Log += _logger.OnLog;
         _client.MessageReceived += CommandHandleAsync;
+
+        VoiceManager = new ConnectionManager(_client);
     }
+
+    public static ConnectionManager? VoiceManager { get; set; }
 
     public async Task RunBotAsync()
     {
@@ -50,8 +61,8 @@ internal class Core
         }
         catch (Exception e)
         {
-            _logger.Write("Скорее всего вы ввели неверный токен, попробуйте еще раз.");
-            _logger.Write(e.ToString());
+            _logger.WriteErrorLine("Скорее всего вы ввели неверный токен, попробуйте еще раз.");
+            _logger.WriteErrorLine(e.ToString());
         }
     }
 
@@ -74,7 +85,7 @@ internal class Core
 
             if (!result.IsSuccess)
             {
-                _logger.Write(result.ErrorReason);
+                _logger.WriteErrorLine(result.ErrorReason);
             }
                 
             if (result.Error.Equals(CommandError.UnmetPrecondition))

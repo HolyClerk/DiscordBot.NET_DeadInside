@@ -31,6 +31,12 @@ public class Panel
 
                 switch (input)
                 {
+                    case "connect":
+                        Core.VoiceManager?.ConnectVoiceAsync();
+                        break;
+                    case "disconnect":
+                        Core.VoiceManager?.DisconnectVoiceAsync();
+                        break;
                     case "e":
                         s_isRunning = false;
                         break;
