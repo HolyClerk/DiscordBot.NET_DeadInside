@@ -37,7 +37,7 @@ internal class Core
             .BuildServiceProvider();
 
         _client.Log += _logger.OnLog;
-        _client.MessageReceived += CommandHandleAsync;
+        _client.MessageReceived += MessageReceived;
 
         VoiceManager = new ConnectionManager(_client);
     }
@@ -64,39 +64,43 @@ internal class Core
             _logger.WriteErrorLine(e.ToString());
         }
     }
-
+    
     /// <summary>
     /// Метод, срабатывающий при отправке пользователем к-либо сообщения.
     /// Проверяет является ли сообщение командой.
     /// </summary>
     /// <param name="arg">Проверяемое сообщение</param>
     /// <returns>Task</returns>
-    private async Task CommandHandleAsync(SocketMessage arg)
+    private Task MessageReceived(SocketMessage arg)
     {
-        var message = (SocketUserMessage)arg;
-
-        var context = new SocketCommandContext(_client, message);
-
-        if (message.Author.IsBot)
+        _ = Task.Run(async () =>
         {
-            return;
-        }
+            var message = (SocketUserMessage)arg;
+            var context = new SocketCommandContext(_client, message);
 
-        var argPos = 0;
-
-        if (message.HasStringPrefix("!", ref argPos))
-        {
-            var result = await _commands.ExecuteAsync(context, argPos, _services);
-
-            if (!result.IsSuccess)
+            if (message.Author.IsBot)
             {
-                _logger.WriteErrorLine(result.ErrorReason);
+                return;
             }
-                
-            if (result.Error.Equals(CommandError.UnmetPrecondition))
+
+            var argPos = 0;
+
+            if (message.HasStringPrefix("!", ref argPos))
             {
-                await message.Channel.SendMessageAsync(result.ErrorReason);
+                var result = await _commands.ExecuteAsync(context, argPos, _services);
+
+                if (!result.IsSuccess)
+                {
+                    _logger.WriteErrorLine(result.ErrorReason);
+                }
+
+                if (result.Error.Equals(CommandError.UnmetPrecondition))
+                {
+                    await message.Channel.SendMessageAsync(result.ErrorReason);
+                }
             }
-        }
+        });
+
+        return Task.CompletedTask;
     }
 }
