@@ -28,11 +28,11 @@ public class ConnectionManager
         audioConnection = new(channelConnection.AudioClient);
     }
 
-    public async Task ConnectVoiceAsync()
+    public async Task ConnectVoiceAsync(ulong guildId = 989937735630471178, ulong channelId = 989937736083472403)
     {
         try
         {
-            await channelConnection.ConnectVoiceAsync(587364626325569556, 962698702416408616);
+            await channelConnection.ConnectVoiceAsync(guildId, channelId);
             _logger.WriteLogLine("Бот успешно подключен к каналу!");
         }
         catch (Exception e)
