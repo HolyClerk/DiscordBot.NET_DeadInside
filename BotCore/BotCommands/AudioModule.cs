@@ -9,8 +9,6 @@ namespace DiscordBot.BotCommands;
 
 public class AudioModule : ModuleBase<SocketCommandContext>
 {
-    AudioService _audioService;
-
     [Command("play", RunMode = RunMode.Async)]
     private async Task Connect()
     {
@@ -22,12 +20,12 @@ public class AudioModule : ModuleBase<SocketCommandContext>
             return;
         }
 
-        await Core.VoiceManager.StartAudioStreamAsync(@"audio/test.mp3");
+        await Core.AudioClient.StartStreamAsync(@"audio/test.mp3");
     }
 
     [Command("stop", RunMode = RunMode.Async)]
     private async Task Disconnect()
     {
-        await Core.VoiceManager.StopAudioStreamAsync();
+       // await Core.AudioClient.StopAudioStreamAsync();
     }
 }

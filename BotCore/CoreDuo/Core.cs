@@ -63,8 +63,8 @@ internal class Core
         }
         catch (Exception e)
         {
-            _logger.WriteErrorLine("Скорее всего вы ввели неверный токен, попробуйте еще раз.");
-            _logger.WriteErrorLine(e.ToString());
+            BotDebugger.WriteErrorLine("Скорее всего вы ввели неверный токен, попробуйте еще раз.");
+            BotDebugger.WriteErrorLine(e.ToString());
         }
     }
     
@@ -94,7 +94,7 @@ internal class Core
 
                 if (!result.IsSuccess)
                 {
-                    _logger.WriteErrorLine(result.ErrorReason);
+                    BotDebugger.WriteErrorLine(result.ErrorReason);
                 }
 
                 if (result.Error.Equals(CommandError.UnmetPrecondition))

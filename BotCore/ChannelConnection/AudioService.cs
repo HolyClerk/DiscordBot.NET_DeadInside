@@ -18,12 +18,13 @@ namespace DiscordBot.ChannelConnection;
 
 public class AudioService
 {
-    private async Task StartStreamAsync(string path = @"audio\test.mp3")
+    public async Task StartStreamAsync(string path = @"audio\test.mp3")
     {
         var audioClient = Core.ConnectionClient?.GetAudioClient();
 
         if (audioClient == null)
         {
+            BotDebugger.WriteLogLine("AudioClient был null");
             return;
         }
         
@@ -34,6 +35,8 @@ public class AudioService
             try { await output.CopyToAsync(discord); }
             finally { await discord.FlushAsync(); }
         }
+
+        BotDebugger.WriteLogLine("Поток начат!");
     }
 
     private Process? CreateStream(string path)

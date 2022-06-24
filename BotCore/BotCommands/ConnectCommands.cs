@@ -20,18 +20,18 @@ public class ConnectCommands : ModuleBase<SocketCommandContext>
             return;
         }
 
-        if (Core.VoiceManager != null)
+        if (Core.ConnectionClient != null)
         {
-            await Core.VoiceManager.ConnectVoiceAsync(guildId: Context.Guild.Id, channelId: channel.Id); // channelId: usedChannel
+            await Core.ConnectionClient.ConnectVoiceAsync(guildId: Context.Guild.Id, channelId: channel.Id); // channelId: usedChannel
         }
     }
 
     [Command("disconnect", true)]
     private async Task Disconnect()
     {
-        if (Core.VoiceManager != null)
+        if (Core.ConnectionClient != null)
         {
-            await Core.VoiceManager.DisconnectVoiceAsync();
+            await Core.ConnectionClient.DisconnectVoiceAsync();
         }
     }
 }
