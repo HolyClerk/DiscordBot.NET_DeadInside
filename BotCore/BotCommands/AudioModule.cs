@@ -24,8 +24,8 @@ public class AudioModule : ModuleBase<SocketCommandContext>
     }
 
     [Command("stop", RunMode = RunMode.Async)]
-    private async Task Disconnect()
+    private void Disconnect()
     {
-       // await Core.AudioClient.StopAudioStreamAsync();
+        Core.AudioClient.StopStreamAsync();
     }
 }

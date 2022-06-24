@@ -16,7 +16,6 @@ namespace DiscordBot.ChannelConnection;
 
 public class ConnectionService
 {
-    private SocketGuild? _guild;
     private DiscordSocketClient _discordClient;
     private SocketVoiceChannel? _voiceChannel;
 
@@ -29,10 +28,12 @@ public class ConnectionService
 
     public async Task ConnectVoiceAsync(ulong guildId = 989937735630471178, ulong channelId = 989937736083472403)
     {
-        _guild = _discordClient.GetGuild(guildId);
-        _voiceChannel = _guild.GetVoiceChannel(channelId);
+        var guild = _discordClient.GetGuild(guildId);
+        _voiceChannel = guild.GetVoiceChannel(channelId);
 
         _audioClient = await _voiceChannel.ConnectAsync();
+
+        BotDebugger.WriteLogLine($"Бот был подключен к {_voiceChannel.Name}!");
     }
 
     public async Task DisconnectVoiceAsync()
@@ -41,6 +42,7 @@ public class ConnectionService
         {
             await _voiceChannel.DisconnectAsync();
             _audioClient = null;
+            BotDebugger.WriteLogLine($"Бот был отключен от {_voiceChannel.Name}!");
         }
     }
 
