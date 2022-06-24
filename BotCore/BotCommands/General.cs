@@ -24,12 +24,13 @@ public class General : ModuleBase<SocketCommandContext>
         var embed = new EmbedBuilder()
                 .WithAuthor("Привет, ебланы!", bot.GetAvatarUrl())
                 .WithColor(Color.Orange)
-                .WithDescription("Я никто. И буду никем. Ничтожное хуйло, которое ебало твою мать!")
+                .WithDescription("Я никто. И буду никем. Я - ничтожное хуйло, но я это признаю!")
 
                 .AddField("Бот был создан: ", bot.CreatedAt, true)
                 .AddField("ID бота: ", bot.Id, true)
 
-                .AddField("\nКОМАНДЫ: ", "!info !help !echo !play", false)
+                .AddField("\n ОСНОВНЫЕ КОМАНДЫ: ", "\n!play \"ссылка\"\n!stop \n!connect \n!disconnect", false)
+                .AddField("\n ДОП. КОМАНДЫ: ", "\n!info \n!help \n!echo", inline: true)
 
                 .WithFooter("Хули надо?");
 
