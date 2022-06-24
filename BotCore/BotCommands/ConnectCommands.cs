@@ -12,22 +12,17 @@ public class ConnectCommands : ModuleBase<SocketCommandContext>
     [Command("connect", true)]
     private async Task Connect()
     {
-        // Канал, используемый по умолчанию
-        ulong usedChannelId = 989937736083472403;
+        var channel = (Context.User as IGuildUser)?.VoiceChannel;
 
-        List<SocketVoiceChannel> usedChannel = (
-            from voiceChannel in Context.Guild.VoiceChannels
-            where voiceChannel.ConnectedUsers.Contains(Context.User)
-            select voiceChannel).ToList();
-
-        if (usedChannel.Count > 0)
+        if (channel == null)
         {
-            usedChannelId = usedChannel[0].Id;
+            await Context.Channel.SendMessageAsync("Вы должны быть подключены к каналу чтобы использовать это.");
+            return;
         }
 
         if (Core.VoiceManager != null)
         {
-            await Core.VoiceManager.ConnectVoiceAsync(guildId: Context.Guild.Id, channelId: usedChannelId); // channelId: usedChannel
+            await Core.VoiceManager.ConnectVoiceAsync(guildId: Context.Guild.Id, channelId: channel.Id); // channelId: usedChannel
         }
     }
 

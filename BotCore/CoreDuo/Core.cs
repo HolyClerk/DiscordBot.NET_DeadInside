@@ -10,6 +10,7 @@ using System.Reflection;
 
 using DiscordBot.Log;
 using DiscordBot.ChannelConnection;
+using Discord.Audio;
 
 namespace DiscordBot.CoreDuo;
 
@@ -39,10 +40,12 @@ internal class Core
         _client.Log += _logger.OnLog;
         _client.MessageReceived += MessageReceived;
 
-        VoiceManager = new ConnectionManager(_client);
+        AudioClient = new();
+        ConnectionClient = new(_client);
     }
 
-    public static ConnectionManager? VoiceManager { get; set; }
+    public static AudioService AudioClient { get; set; }
+    public static ConnectionService ConnectionClient { get; set; }
 
     public async Task RunBotAsync()
     {
