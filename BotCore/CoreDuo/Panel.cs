@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace DiscordBot.CoreDuo;
 
+/// <summary>
+/// Панель разработчика для теста функционала
+/// </summary>
 public class Panel
 {
     private static bool s_isRunning = true;

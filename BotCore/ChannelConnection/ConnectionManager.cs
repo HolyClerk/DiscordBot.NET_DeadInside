@@ -18,91 +18,56 @@ public class ConnectionManager
 {
     private BotDebugger _logger;
 
-    private SocketGuild? _guild;
-    private DiscordSocketClient _client;
-    private SocketVoiceChannel? _voiceChannel;
+    private ChannelConnection channelConnection;
+    private AudioConnection audioConnection;
 
     public ConnectionManager(DiscordSocketClient client)
     {
         _logger = new();
-        _client = client;
+        channelConnection = new(client);
+        audioConnection = new(channelConnection.AudioClient);
     }
-
-    public IAudioClient? AudioClient { get; set; }
 
     public async Task ConnectVoiceAsync()
     {
-        _guild = _client.GetGuild(587364626325569556);
-        _voiceChannel = _guild.GetVoiceChannel(758747064430624768);
-
-        AudioClient = await _voiceChannel.ConnectAsync();
-
-        _logger.WriteLogLine("Успешно!");
-    }
-
-    public async Task ConnectVoiceAsync(ulong guildId, ulong channelId)
-    {
         try
         {
-            _guild = _client.GetGuild(guildId);
-            _voiceChannel = _guild.GetVoiceChannel(channelId);
-
-            AudioClient = await _voiceChannel.ConnectAsync();
-
-            _logger.WriteLogLine("Успешно!");
+            await channelConnection.ConnectVoiceAsync(587364626325569556, 962698702416408616);
+            _logger.WriteLogLine("Бот успешно подключен к каналу!");
         }
         catch (Exception e)
         {
             _logger.WriteErrorLine(e.Message);
+            _logger.WriteErrorLine(e.ToString());
+            throw;
         }
-
     }
 
     public async Task DisconnectVoiceAsync()
     {
         try
         {
-            if (_voiceChannel != null)
-            {
-                await _voiceChannel.DisconnectAsync();
-                _logger.WriteLogLine("Бот был отключен от канала!");
-            }
-            else
-            {
-
-                _logger.WriteLogLine("Нет соединения!");
-            }
+            await channelConnection.DisconnectVoiceAsync();
+            _logger.WriteLogLine("Бот был отключен от канала!");
         }
         catch (Exception e)
         {
             _logger.WriteErrorLine(e.Message);
+            throw;
         }
     }
 
-    private async Task SendAudioAsync(string path)
+    public async Task StartAudioStreamAsync()
     {
-        if (AudioClient == null)
+        try
         {
-            return;
+            await audioConnection.SendAudioAsync("");
+            _logger.WriteLogLine("Бот начал потоковое воиспроизведение!");
         }
-
-        using (var ffmpeg = CreateStream(path))
-        using (var output = ffmpeg.StandardOutput.BaseStream)
-        using (var discord = AudioClient.CreatePCMStream(AudioApplication.Mixed))
+        catch (Exception e)
         {
-            try { await output.CopyToAsync(discord); }
-            finally { await discord.FlushAsync(); }
+            _logger.WriteErrorLine(e.Message);
+            throw;
         }
-    }
-
-    private Process? CreateStream(string path)
-    {
-        return Process.Start(new ProcessStartInfo
-        {
-            FileName = "ffmpeg",
-            Arguments = $"-hide_banner -loglevel panic -i \"{path}\" -ac 2 -f s16le -ar 48000 pipe:1",
-            UseShellExecute = false,
-            RedirectStandardOutput = true,
-        });
     }
 }
