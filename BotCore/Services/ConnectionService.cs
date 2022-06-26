@@ -12,7 +12,7 @@ using DiscordBot.Log;
 using Discord.Audio;
 using System.Diagnostics;
 
-namespace DiscordBot.ChannelConnection;
+namespace DiscordBot.Services;
 
 public class ConnectionService
 {
@@ -20,6 +20,8 @@ public class ConnectionService
     private SocketVoiceChannel? _voiceChannel;
 
     private IAudioClient? _audioClient;
+
+    public bool IsConnected = false;
 
     public ConnectionService(DiscordSocketClient client) 
     {
@@ -33,6 +35,8 @@ public class ConnectionService
 
         _audioClient = await _voiceChannel.ConnectAsync();
 
+        IsConnected = true;
+
         BotDebugger.WriteLogLine($"Бот был подключен к {_voiceChannel.Name}!");
     }
 
@@ -42,6 +46,7 @@ public class ConnectionService
         {
             await _voiceChannel.DisconnectAsync();
             _audioClient = null;
+            IsConnected = false;
             BotDebugger.WriteLogLine($"Бот был отключен от {_voiceChannel.Name}!");
         }
     }

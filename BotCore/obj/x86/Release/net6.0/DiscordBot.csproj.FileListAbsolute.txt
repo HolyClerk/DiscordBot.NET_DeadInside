@@ -67,3 +67,5 @@ C:\Users\PHPpr\Documents\Dev\BotCore\DiscordBot.NET_DeadInside\BotCore\obj\x86\R
 C:\Users\PHPpr\Documents\Dev\BotCore\DiscordBot.NET_DeadInside\BotCore\obj\x86\Release\net6.0\DiscordBot.pdb
 C:\Users\PHPpr\Documents\Dev\BotCore\DiscordBot.NET_DeadInside\BotCore\obj\x86\Release\net6.0\DiscordBot.genruntimeconfig.cache
 C:\Users\PHPpr\Documents\Dev\BotCore\DiscordBot.NET_DeadInside\BotCore\obj\x86\Release\net6.0\ref\DiscordBot.dll
+C:\Users\PHPpr\Documents\Dev\BotCore\DiscordBot.NET_DeadInside\BotCore\bin\x86\Release\net6.0\AngleSharp.dll
+C:\Users\PHPpr\Documents\Dev\BotCore\DiscordBot.NET_DeadInside\BotCore\bin\x86\Release\net6.0\YoutubeExplode.dll

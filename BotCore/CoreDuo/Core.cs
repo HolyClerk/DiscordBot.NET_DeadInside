@@ -9,7 +9,7 @@ using Microsoft.Extensions.Logging;
 using System.Reflection;
 
 using DiscordBot.Log;
-using DiscordBot.ChannelConnection;
+using DiscordBot.Services;
 using Discord.Audio;
 
 namespace DiscordBot.CoreDuo;

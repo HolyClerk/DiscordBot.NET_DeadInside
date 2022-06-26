@@ -6,19 +6,17 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using System.Reflection;
 using System.Diagnostics;
 
 using DiscordBot.Log;
 using DiscordBot.CoreDuo;
 using Discord.Audio;
 
-
-namespace DiscordBot.ChannelConnection;
+namespace DiscordBot.Services;
 
 public class AudioService
 {
-    public async Task StartStreamAsync(string path = @"audio\test.mp3")
+    public async Task StartStreamAsync(string link = @"audio\test.mp3")
     {
         var audioClient = Core.ConnectionClient?.GetAudioClient();
 
@@ -28,9 +26,22 @@ public class AudioService
             return;
         }
 
-        BotDebugger.WriteLogLine("Попытка начала потока... ");
+        await CreateStream(link, audioClient);
+    }
 
-        using (var ffmpeg = CreateStream(path))
+    /// <summary>
+    /// NEED TO REALIZE
+    /// </summary>
+    public void StopStreamAsync()
+    {
+
+    }
+
+    private async Task CreateStream(string link, IAudioClient audioClient)
+    {
+        BotDebugger.WriteLogLine("Создание потока... ");
+
+        using (var ffmpeg = Collector.CreateStream(link))
         {
             if (ffmpeg == null)
             {
@@ -47,24 +58,5 @@ public class AudioService
         }
 
         BotDebugger.WriteLogLine("Поток закончен!");
-    }
-
-    /// <summary>
-    /// NEED TO REALIZE
-    /// </summary>
-    public void StopStreamAsync()
-    {
-
-    }
-
-    private Process? CreateStream(string path)
-    {
-        return Process.Start(new ProcessStartInfo
-        {
-            FileName = @"C:\Users\PHPpr\Documents\Dev\BotCore\DiscordBot.NET_DeadInside\BotCore\bin\x86\Release\net6.0\ffmpeg_audiotool\bin\ffmpeg",
-            Arguments = $"-hide_banner -loglevel panic -i \"{path}\" -ac 2 -f s16le -ar 48000 pipe:1",
-            UseShellExecute = false,
-            RedirectStandardOutput = true,
-        });
     }
 }
