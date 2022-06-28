@@ -40,12 +40,12 @@ internal class Core
         _client.Log += _logger.OnLog;
         _client.MessageReceived += MessageReceived;
 
-        AudioClient = new();
-        ConnectionClient = new(_client);
+        CurrentAudioClient = new();
+        CurrentConnection = new(_client);
     }
 
-    public static AudioService AudioClient { get; set; }
-    public static ConnectionService ConnectionClient { get; set; }
+    public static AudioService CurrentAudioClient { get; set; }
+    public static ConnectionService CurrentConnection { get; set; }
 
     public async Task RunBotAsync()
     {

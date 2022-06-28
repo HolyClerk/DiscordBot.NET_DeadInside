@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\PHPpr\\Documents\\Dev\\BotCore\\DiscordBot.NET_DeadInside\\BotCore\\DiscordBot.csproj": {}
+    "C:\\Users\\PHPpr\\Documents\\Development\\Soul\\CSharp\\BotCore\\DiscordBot.NET_DeadInside\\BotCore\\DiscordBot.csproj": {}
   },
   "projects": {
-    "C:\\Users\\PHPpr\\Documents\\Dev\\BotCore\\DiscordBot.NET_DeadInside\\BotCore\\DiscordBot.csproj": {
+    "C:\\Users\\PHPpr\\Documents\\Development\\Soul\\CSharp\\BotCore\\DiscordBot.NET_DeadInside\\BotCore\\DiscordBot.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\PHPpr\\Documents\\Dev\\BotCore\\DiscordBot.NET_DeadInside\\BotCore\\DiscordBot.csproj",
+        "projectUniqueName": "C:\\Users\\PHPpr\\Documents\\Development\\Soul\\CSharp\\BotCore\\DiscordBot.NET_DeadInside\\BotCore\\DiscordBot.csproj",
         "projectName": "DiscordBot",
-        "projectPath": "C:\\Users\\PHPpr\\Documents\\Dev\\BotCore\\DiscordBot.NET_DeadInside\\BotCore\\DiscordBot.csproj",
+        "projectPath": "C:\\Users\\PHPpr\\Documents\\Development\\Soul\\CSharp\\BotCore\\DiscordBot.NET_DeadInside\\BotCore\\DiscordBot.csproj",
         "packagesPath": "C:\\Users\\PHPpr\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\PHPpr\\Documents\\Dev\\BotCore\\DiscordBot.NET_DeadInside\\BotCore\\obj\\",
+        "outputPath": "C:\\Users\\PHPpr\\Documents\\Development\\Soul\\CSharp\\BotCore\\DiscordBot.NET_DeadInside\\BotCore\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
           "C:\\Users\\PHPpr\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

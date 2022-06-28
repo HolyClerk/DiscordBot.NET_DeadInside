@@ -29,10 +29,10 @@ public class Panel
                 switch (input)
                 {
                     case "connect":
-                        Core.ConnectionClient?.ConnectVoiceAsync();
+                        Core.CurrentConnection?.ConnectVoiceAsync();
                         break;
                     case "disconnect":
-                        Core.ConnectionClient?.DisconnectVoiceAsync();
+                        Core.CurrentConnection?.DisconnectVoiceAsync();
                         break;
                     case "e":
                         s_isRunning = false;

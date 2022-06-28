@@ -21,9 +21,9 @@ public class AudioModule : ModuleBase<SocketCommandContext>
             return;
         }
 
-        if ((Core.ConnectionClient != null) && (Core.ConnectionClient.IsConnected == false))
+        if ((Core.CurrentConnection != null) && (Core.CurrentConnection.IsConnected == false))
         {
-            await Core.ConnectionClient.ConnectVoiceAsync(guildId: Context.Guild.Id, channelId: channel.Id); // channelId: usedChannel
+            await Core.CurrentConnection.ConnectVoiceAsync(guildId: Context.Guild.Id, channelId: channel.Id); // channelId: usedChannel
         }
 
         var uclient = new YoutubeClient();
@@ -32,12 +32,12 @@ public class AudioModule : ModuleBase<SocketCommandContext>
 
         await Context.Channel.SendMessageAsync($"Пытаюсь запустить твоё ебаное видео: \n{video.Result.Title} от {video.Result.Author}");
 
-        await Core.AudioClient.StartStreamAsync(link);
+        await Core.CurrentAudioClient.StartStreamAsync(link);
     }
 
     [Command("stop", RunMode = RunMode.Async)]
     private void Disconnect()
     {
-        Core.AudioClient.StopStreamAsync();
+        Core.CurrentAudioClient.StopStreamAsync();
     }
 }

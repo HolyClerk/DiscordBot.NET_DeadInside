@@ -18,7 +18,7 @@ public class AudioService
 {
     public async Task StartStreamAsync(string link = @"audio\test.mp3")
     {
-        var audioClient = Core.ConnectionClient?.GetAudioClient();
+        var audioClient = Core.CurrentConnection?.GetAudioClient();
 
         if (audioClient == null)
         {

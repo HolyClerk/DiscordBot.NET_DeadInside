@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Niy0GZOD8xm6FbWYS0cXZvJYWiQrjW0IBBqoQOdNzz22Ff/vGooDWRZ8PA4OY9qniuP1QfSgVmEnd2ewqhh4jA==",
+  "dgSpecHash": "xl6PmV7g0z2t9gORvscYEnaGs2LITuwg5wKD1N3tdvfgaE0jPxAG5VSgHw6MWHITbh7y17xwRSKDAgiA5R+mIA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\PHPpr\\Documents\\Dev\\BotCore\\DiscordBot.NET_DeadInside\\BotCore\\DiscordBot.csproj",
+  "projectFilePath": "C:\\Users\\PHPpr\\Documents\\Development\\Soul\\CSharp\\BotCore\\DiscordBot.NET_DeadInside\\BotCore\\DiscordBot.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\PHPpr\\.nuget\\packages\\anglesharp\\0.16.1\\anglesharp.0.16.1.nupkg.sha512",
     "C:\\Users\\PHPpr\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
